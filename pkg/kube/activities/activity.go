@@ -452,6 +452,7 @@ func updateActivity(k *PipelineActivityKey, activity *v1.PipelineActivity) {
 	activity.Labels[v1.LabelProvider] = ToProviderName(activity.Spec.GitURL)
 	activity.Labels[v1.LabelOwner] = activity.RepositoryOwner()
 	activity.Labels[v1.LabelRepository] = strings.Replace(activity.RepositoryName(), "/", "-", -1)
+	fmt.Println("Replaced", activity.Labels[v1.LabelRepository])
 	activity.Labels[v1.LabelBranch] = activity.BranchName()
 	if activity.Spec.Context != "" {
 		activity.Labels[v1.LabelContext] = activity.Spec.Context
