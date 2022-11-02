@@ -451,7 +451,7 @@ func updateActivity(k *PipelineActivityKey, activity *v1.PipelineActivity) {
 
 	activity.Labels[v1.LabelProvider] = ToProviderName(activity.Spec.GitURL)
 	activity.Labels[v1.LabelOwner] = activity.RepositoryOwner()
-	activity.Labels[v1.LabelRepository] = activity.RepositoryName()
+	activity.Labels[v1.LabelRepository] = strings.Replace(activity.RepositoryName(), "/", "-", -1)
 	activity.Labels[v1.LabelBranch] = activity.BranchName()
 	if activity.Spec.Context != "" {
 		activity.Labels[v1.LabelContext] = activity.Spec.Context
@@ -721,7 +721,7 @@ func (k *PromoteStepActivityKey) GetOrCreatePromoteUpdate(jxClient versioned.Int
 	return a, s, p, p.Update, created, err
 }
 
-//OnPromotePullRequest updates activities on a Promote PR
+// OnPromotePullRequest updates activities on a Promote PR
 func (k *PromoteStepActivityKey) OnPromotePullRequest(kubeClient kubernetes.Interface, jxClient versioned.Interface, ns string, fn PromotePullRequestFn) error {
 	if !k.IsValid() {
 		return nil
@@ -752,7 +752,7 @@ func (k *PromoteStepActivityKey) OnPromotePullRequest(kubeClient kubernetes.Inte
 	return err
 }
 
-//OnPromoteUpdate updates activities on a Promote Update
+// OnPromoteUpdate updates activities on a Promote Update
 func (k *PromoteStepActivityKey) OnPromoteUpdate(kubeClient kubernetes.Interface, jxClient versioned.Interface, ns string, fn PromoteUpdateFn) error {
 	if !k.IsValid() {
 		return nil
