@@ -1,4 +1,4 @@
-module github.com/XLordalX/jx-helpers/v3
+module github.com/XLordalX/jx-helpers/v5
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.4
