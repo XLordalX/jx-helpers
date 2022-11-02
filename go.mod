@@ -123,8 +123,6 @@ replace (
 	k8s.io/api => k8s.io/api v0.20.6
 	k8s.io/apimachinery => k8s.io/apimachinery v0.20.6
 	k8s.io/client-go => k8s.io/client-go v0.20.6
-
-	github.com/jenkins-x/jx-helpers/v3 => github.com/XLordalX/jx-helpers/v3 v3.4.5
 )
 
 go 1.18
